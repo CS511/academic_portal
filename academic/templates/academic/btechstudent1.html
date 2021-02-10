@@ -1,0 +1,676 @@
+<!-- 
+The dummy file where I am doing all my tinkering and getting everything to run
+
+for putting if else conditions in css itself and therefor not doing it inefficiently inline, I will have to use sass
+
+Refer to the cs50 video on css for that, they explain it very well
+
+-->   
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Academic Portal</title>
+<style>
+
+/* SIDENAV STYLING */   
+
+
+
+#color-picker {
+
+  float: center;
+}
+
+#display-table {
+  position: relative;
+  margin-left:20 px;
+  float: center;
+}
+
+input {
+    margin: .4rem;
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 210px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+/* SIDENAV STYLING */  
+
+tr.gradeA {
+  background-color:palegreen ;
+} 
+
+
+tr.gradeB {
+  background-color:white;
+}
+
+tr.gradeC {
+  background-color:white;
+}
+
+
+tr.gradeD {
+  background-color:#ffbf00;
+}
+
+tr.gradeE {
+  background-color:#ff00ff;
+}
+
+tr.gradeF {
+  background-color:#ff4d4d;
+}
+
+tr.gradeW {
+  background-color:#556B2F;
+}
+
+
+
+
+
+
+td.gradeA {
+  background-color:palegreen ;
+} 
+
+td.gradeB {
+  background-color:white;
+}
+
+td.gradeC {
+  background-color:white;
+}
+
+
+td.gradeD {
+  background-color:#ffbf00;
+}
+
+
+
+
+
+
+body {
+  background-color: white;
+  text-align: center;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+table  {  
+  margin: 0 auto; 
+  background-color: white;
+} 
+
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+}
+
+td { 
+  position:absolute
+  white-space:pre }
+
+th:hover, td:hover {
+  background-color: lightpink!important;
+}
+
+
+
+/* code for the top header */
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+
+/* color selection sidebar*/ 
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  opacity: 0.6;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+#studinfo {
+  margin-left: 10px;
+  margin-top: 200px;
+  position:left;
+  position:fixed ;
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+<div class="header">
+  <a href="#default" class="logo">Other Scenarios</a>
+  <div class="header-right">
+    <a  href="{% url 'terminate' %}">Termination After Restart</a>
+    <a  href="{% url 'restart' %}">Degree Restart</a>
+  </div>
+</div>  
+
+ 
+
+<h1>Interactive Academic Feedback System</h1>
+<p id="studinfo"><b>Btech student 'Aarti'</b></p>
+
+<!-- <p>Shivani Sen</p>
+<p>2011CS50297</p>  -->
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+ 
+
+<div id = "color-picker" style="text-align=right" >
+  <p><b>Choose colors for grades:</b></p>
+
+<div>
+    <input type="color" id="A" name="A"
+           value= "#98FB98">
+    <label for="A">A</label>
+
+    <button onclick="mygradeA()">Apply</button>
+</div>
+
+
+
+<div>
+    <input type="color" id="B" name="B"
+            value="#ffffff">
+    <label for="B">B</label>
+    <button onclick="mygradeB()">Apply</button>
+</div>
+
+
+<div>
+    <input type="color" id="C" name="C"
+            value="#ffffff">
+    <label for="C">C</label>
+    <button onclick="mygradeC()">Apply</button>
+</div>
+
+
+<div>
+    <input type="color" id="D" name="D"
+            value="#ffbf00">
+    <label for="D">D</label>
+    <button onclick="mygradeD()">Apply</button>
+</div>
+
+
+<div>
+    <input type="color" id="E" name="E"
+            value="#ff00ff">
+    <label for="E">E</label>
+    <button onclick="mygradeE()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="F" name="F"
+            value="#ff4d4d">
+    <label for="F">F</label>
+    <button onclick="mygradeF()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="W" name="W"
+            value="#556B2F">
+    <label for="W">W</label>
+    <button onclick="mygradeW()">Apply</button>
+</div>
+
+</div> 
+
+</div>
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Change Color Scheme </button>  
+  
+</div>
+
+<hr>
+
+
+{{ data4 | safe}}
+ 
+
+
+ <hr>
+
+
+<div>
+ <table id = "display-table" style="width:60%">
+
+   <tr>
+
+    <th>Sem</th>
+    <th>Course Code</th>
+    <th>Course Title</th>
+    <th>Course Credits</th>
+    <th>Course Grade</th>
+
+  </tr>
+
+
+
+{% for getdata in data5 %}
+<tr {% if getdata.grades == 'A' or getdata.grades == 'A-' %} class="gradeA" 
+{% elif getdata.grades == 'B'  %} class="gradeB" 
+{% elif getdata.grades == 'C' %} class="gradeC" 
+{% elif getdata.grades == 'D' %} class="gradeD" 
+{% elif getdata.grades == 'E' %} class="gradeE" 
+{% endif %}>
+<td>  <input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('{{lines}}')"> </td>
+       <td>
+     {{getdata.semester}}
+      </td> 
+       <td >
+       {{getdata.course_code}}    
+      </td>
+       <td>
+     {{getdata.course_title}}
+      </td>
+       <td>
+     {{getdata.credits}}
+      </td>
+       <td >
+     {{getdata.grades}}
+      </td>
+
+</tr>
+{% endfor %}
+
+</table> 
+</div>
+
+
+<hr>
+
+
+<table>
+  <thead><tr><th>Sem</th><th>Course</th><th>Credits</th><th>Grade</th></tr></thead>
+  <tbody>
+  {% load academic_extras %}  
+  {% regroup data5 by semester as grouped %}
+  {% for group in grouped %}
+  {% for obj in group.list %}
+    <tr>
+      {% ifchanged %}<td rowspan="{{ group.list|length }}">{{ obj.semester }}</td>{% endifchanged %}
+      <td>{{ obj.course_code }}</td>
+      <td>{{ obj.credits }}</td>
+      <td  {% if obj.grades == 'A' or obj.grades == 'A-' %} class="gradeA" 
+{% elif obj.grades == 'B'  %} class="gradeB" 
+{% elif obj.grades == 'C' %} class="gradeC" 
+{% elif obj.grades == 'D' %} class="gradeD" 
+{% elif obj.grades == 'E' %} class="gradeE" 
+{% endif %} >{{ obj.grades }}</td>
+
+    </tr>
+  {% endfor %}
+  {% endfor %}
+  </tbody>
+</table>
+
+
+
+<hr>
+
+<div>
+<table>
+    <tr>
+      <th>Sem</th>
+      <th>Course 1</th>
+      <th>Course 2</th>
+      <th>Course 3</th>
+      <th>Course 4</th>
+      <th>Course 5</th>
+      <th>Course 6</th>
+      <th>Course 7</th>
+      <th>Course 8</th>
+      <th>Course 9</th>
+      <th>Total Credits</th>
+    </tr>
+    {% for lines in data6 %} 
+       <tr>
+          {% for value in lines.values %}       
+            <td {% if 'COL' in value %} class="gradeA" 
+{% elif value == 'B'  %} class="gradeB" 
+{% elif value == 'C' %} class="gradeC" 
+{% elif value == 'D' %} class="gradeD" 
+{% elif value == 'E' %} class="gradeE" 
+{% endif %}>{{ value }}</td>
+          {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+
+</div>
+
+
+
+
+
+<table>
+    {% for line in data6 %}
+    <tr>
+        {% for key, value in line.items %}
+                <th>{{ key }}</th>
+                <td>{{ value }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+<hr>
+
+
+
+
+
+
+
+
+
+<p id="demo"></p>
+
+<!-- Javascript code for showing a popup when a value is clicked in the table -->  
+
+<script>
+highlight_row();
+function highlight_row() {
+    var table = document.getElementById('display-table');
+    var cells = table.getElementsByTagName('td');
+
+    for (var i = 0; i < cells.length; i++) {
+        // Take each cell
+        var cell = cells[i];
+        // do something on onclick event for cell
+        cell.onclick = function () {
+            // Get the row id where the cell exists
+            var rowId = this.parentNode.rowIndex;
+
+            var rowsNotSelected = table.getElementsByTagName('tr');
+            for (var row = 0; row < rowsNotSelected.length; row++) {
+                rowsNotSelected[row].style.backgroundColor = "";
+                rowsNotSelected[row].classList.remove('selected');
+            }
+            var rowSelected = table.getElementsByTagName('tr')[rowId];
+            rowSelected.style.backgroundColor = "";
+            rowSelected.className += " selected";
+
+            msg = rowSelected.cells[1].innerHTML;
+            msg += rowSelected.cells[2].innerHTML;
+            msg += rowSelected.cells[4].innerHTML;
+            alert(msg);
+        }
+    }   
+}
+
+</script>
+
+
+<!-- Javascript code for changing color when the apply button next to a color picker is clicked --> 
+
+
+<script>
+function mygradeA() {
+  var x = document.getElementById("A").value;
+   elementsA = document.getElementsByClassName("gradeA");
+    for (var i = 0; i < elementsA.length; i++) {
+        elementsA[i].style.backgroundColor=x;
+  }
+}  
+
+function mygradeB() {
+  var y = document.getElementById("B").value;
+   elementsB = document.getElementsByClassName("gradeB");
+    for (var j = 0; j < elementsB.length; j++) {
+        elementsB[j].style.backgroundColor=y;
+  }
+} 
+
+function mygradeC() {
+  var z = document.getElementById("C").value;
+   elementsC = document.getElementsByClassName("gradeC");
+    for (var k = 0; k < elementsC.length; k++) {
+        elementsC[k].style.backgroundColor=z;
+  }
+} 
+
+function mygradeD() {
+  var m = document.getElementById("D").value;
+   elementsD = document.getElementsByClassName("gradeD");
+    for (var s = 0; s < elementsD.length; s++) {
+        elementsD[s].style.backgroundColor=m;
+  }
+} 
+
+function mygradeE() {
+  var n = document.getElementById("E").value;
+   elementsE = document.getElementsByClassName("gradeE");
+    for (var t = 0; t < elementsE.length; t++) {
+        elementsE[t].style.backgroundColor=n;
+  }
+} 
+
+function mygradeF() {
+  var o = document.getElementById("F").value;
+   elementsF = document.getElementsByClassName("gradeF");
+    for (var u = 0; u < elementsF.length; u++) {
+        elementsF[u].style.backgroundColor=o;
+  }
+} 
+
+function mygradeW() {
+  var r = document.getElementById("W").value;
+   elementsW = document.getElementsByClassName("gradeW");
+    for (var v = 0; v < elementsW.length; v++) {
+        elementsW[v].style.backgroundColor=r;
+  }
+} 
+
+</script>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+
+
+<!--
+
+
+<script>
+highlight_row();
+function highlight_row(){
+  var table = document.getElementById('display-table');
+  var cells = table.getElementsByTagName('td');
+
+  for(var i = 0; i < cells.length; i++) {
+
+    var cell = cells[i];
+
+    cell.onclick = function () {
+      var rowId = this.parentNode.rowIndex;
+
+      var rowsNotSelected = table.getElementsByTagName('tr');
+
+    }
+  }
+
+}
+</script>  
+
+
+-->
+
+
+
+
+
+</body>
+</html>

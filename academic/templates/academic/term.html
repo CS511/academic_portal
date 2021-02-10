@@ -1,0 +1,762 @@
+ 
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Consolidated Grade Sheet</title>
+<style>
+
+/* SIDENAV STYLING */   
+
+
+
+#color-picker {
+
+  float: center;
+}
+
+#display-table {
+  position: relative;
+  margin-left:20 px;
+  float: center;
+}
+
+input {
+    margin: .4rem;
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 210px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+/* SIDENAV STYLING */  
+
+
+
+td.gradeA {
+  background-color:palegreen ;
+} 
+
+td.gradeB {
+  background-color:lavender;
+}
+
+td.gradeC {
+  background-color:#bcbd84;
+}
+
+
+td.gradeD {
+  background-color:#f49f59;
+}
+
+td.gradeE {
+  background-color:#e59dcb;
+}
+
+td.gradeF {
+  background-color:#ff4d4d;
+}
+
+td.gradeW {
+  background-color:#556B2F;
+}
+
+
+
+
+
+td.cDC {
+  font-color:palegreen ;
+} 
+
+
+td.cDE {
+  color:lavender;
+}
+
+
+td.cEAS {
+  color:#bcbd84;
+}
+
+
+td.cBS {
+  lighting-color: :#f49f59;
+}
+
+
+td.cHU {
+  color:#e59dcb;
+}
+
+td.cOC {
+  color:#ff4d4d;
+}
+
+td.cNG {
+  color:#556B2F;
+}
+
+td.cPBS {
+  color:#556B2F;
+}
+
+
+
+/* #cDC{
+  color:white;
+}
+
+#cDE {
+color:red;
+}
+
+#cBS{
+color:khaki;
+}
+
+
+#cEAS{
+color:navy;
+}
+
+#cOC{
+color:brown;
+}
+
+#cNG{
+color:yellow;
+}
+
+#cHU{
+color:salmon;
+}
+
+#cPBS{
+color:lavender;
+}
+
+*/
+
+
+body {
+  background-color: white;
+  text-align: center;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+table  {  
+  margin: 0 auto; 
+  background-color: white;
+} 
+
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+
+
+
+th, td {
+  padding: 15px;
+
+}
+
+td { 
+  position:absolute
+  white-space:pre }
+
+th:hover, td:hover {
+  background-color: lightpink!important;
+}
+
+
+
+/* code for the top header */
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+
+/* color selection sidebar*/ 
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  opacity: 0.6;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+
+
+
+
+</style>
+</head>
+<body>
+
+
+<div class="header">
+  <a href="{% url 'planning' %}" class="logo">Planning Tool</a>
+  <a href="https://home.iitd.ac.in/uploads/Courses-of-Study_2020-2021.pdf" class="logo">Courses Of Study</a> 
+  <div class="header-right">
+    <a  href="{% url 'student' %}">Average Student <br> 2014CS10256</a>
+    <a  href="{% url 'restart' %}">Degree Restart <br> 2014CS10234</a>
+  </div>
+</div>  
+
+ 
+
+<h1>Keshav Kumar 2014CS10226 </h1>
+<h2 style="position:center"><b> Terminated After Restart </b></h2>
+
+<!-- <p>Shivani Sen</p>
+<p>2011CS50297</p>  -->
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+ 
+
+<div id = "color-picker" style="position=left" >
+  <p><b>Choose colors for grades:</b></p>
+
+<div>
+    <input type="color" id="A" name="A"
+           value= "#98FB98">
+    <label for="A">A</label>
+
+    <button onclick="mygradeA()">Apply</button>
+</div>
+
+
+
+<div>
+    <input type="color" id="B" name="B"
+            value="#E6E6FA">
+    <label for="B">B</label>
+    <button onclick="mygradeB()">Apply</button>
+</div>
+
+
+<div>
+    <input type="color" id="C" name="C"
+            value="#bcbd84">
+    <label for="C">C</label>
+    <button onclick="mygradeC()">Apply</button>
+</div>
+
+
+<div>
+    <input type="color" id="D" name="D"
+            value="#f49f59">
+    <label for="D">D</label>
+    <button onclick="mygradeD()">Apply</button>
+</div>
+
+
+<div>
+    <input type="color" id="E" name="E"
+            value="#e59dcb">
+    <label for="E">E</label>
+    <button onclick="mygradeE()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="F" name="F"
+            value="#ff4d4d">
+    <label for="F">F</label>
+    <button onclick="mygradeF()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="W" name="W"
+            value="#556B2F">
+    <label for="W">W</label>
+    <button onclick="mygradeW()">Apply</button>
+</div>
+
+<!--
+<p><b>Choose font colors for Course Category:</b></p>
+
+<div>
+    <input type="color" id="DC" name="DC"
+           value= "#000000">
+    <label for="DC">Dep. Core (DC)</label>
+
+    <button onclick="catDC()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="DE" name="DE"
+           value= "#000000">
+    <label for="DE">Dep. Elective (DE)</label>
+
+    <button onclick="catDE()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="BS" name="BS"
+           value= "#000000">
+    <label for="BS">Basic Sciences (BS)</label>
+
+    <button onclick="catOC()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="EAS" name="EAS"
+           value= "#000000">
+    <label for="EAS">Engg. Arts & Sci. (EAS)</label>
+
+    <button onclick="catEAS()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="OC" name="OC"
+           value= "#000000">
+    <label for="OC">Open Category (OC)</label>
+
+    <button onclick="catOC()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="HU" name="HU"
+           value= "#000000">
+    <label for="HU">Humanities(HU)</label>
+
+    <button onclick="catHU()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="NG" name="NG"
+           value= "#000000">
+    <label for="NG">Non Graded (NG)</label>
+
+    <button onclick="catNG()">Apply</button>
+</div>
+
+<div>
+    <input type="color" id="PBS" name="PBS"
+           value= "#000000">
+    <label for="PBS">Prog. Related BS & EAS (PBS)</label>
+
+    <button onclick="catPBS()">Apply</button>
+</div>
+
+-->
+
+ 
+</div>
+</div>
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Change Color Scheme </button>  
+  <button class="openbtn" onclick="openGrade()">☰ Detailed Credit Breakup </button>
+</div>
+
+
+
+<div>
+<table>
+    <tr>
+     
+      <th>Sem</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Credits <br> Reg./Cld./Cum.</th>
+      <th> SGPA/CGPA </th>
+    </tr>
+    {% for lines in dataterm %} 
+       <tr style="font-weight:bold">
+        
+          {% for value in lines.values %}       
+            <td  {% if '(A)' in value or '(A-)' in value %} class="gradeA" 
+{% elif '(B)' in value or '(B-)' in value  %} class="gradeB" 
+{% elif '(C)' in value or '(C-)' in value %} class="gradeC" 
+{% elif '(D)' in value %} class="gradeD" 
+{% elif '(E)' in value %} class="gradeE" 
+{% elif '(F)' in value %} class="gradeF"
+{% endif %}
+{% if '(DC)' in value %} style=" color:maroon"
+{% elif '(DE)' in value %} style="color:#6600cc"
+{% elif '(BS)' in value %} id="cBS" 
+{% elif '(EAS)' in value %} id="cEAS"
+{% elif '(HU)' in value %} id="cHU"
+{% elif '(PBS)' in value %} id="cPBS" 
+{% elif '(OC)' in value %} id="cOC" 
+{% elif '(NG)' in value %} id="cNG"
+{% endif %}> {{ value | linebreaksbr}}</td>
+          {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+
+</div>
+
+
+
+
+
+<!-- 
+  To add line breaks inside the cell 
+ #  endif >{{ value  | join:"&#10;"}}</td>
+ linebreaksbr replaces every \n with a line break
+-->
+
+
+<p id="demo"></p>
+
+<!-- Javascript code for showing a popup when a value is clicked in the table -->  
+
+<script>
+highlight_row();
+function highlight_row() {
+    var table = document.getElementById('display-table');
+    var cells = table.getElementsByTagName('td');
+
+    for (var i = 0; i < cells.length; i++) {
+        // Take each cell
+        var cell = cells[i];
+        // do something on onclick event for cell
+        cell.onclick = function () {
+            // Get the row id where the cell exists
+            var rowId = this.parentNode.rowIndex;
+
+            var rowsNotSelected = table.getElementsByTagName('tr');
+            for (var row = 0; row < rowsNotSelected.length; row++) {
+                rowsNotSelected[row].style.backgroundColor = "";
+                rowsNotSelected[row].classList.remove('selected');
+            }
+            var rowSelected = table.getElementsByTagName('tr')[rowId];
+            rowSelected.style.backgroundColor = "";
+            rowSelected.className += " selected";
+
+            msg = rowSelected.cells[1].innerHTML;
+            msg += rowSelected.cells[2].innerHTML;
+            msg += rowSelected.cells[4].innerHTML;
+            alert(msg);
+        }
+    }   
+}
+
+</script>
+
+
+<!-- Javascript code for changing color when the apply button next to a color picker is clicked --> 
+
+
+<script>
+function mygradeA() {
+  var x = document.getElementById("A").value;
+   elementsA = document.getElementsByClassName("gradeA");
+    for (var i = 0; i < elementsA.length; i++) {
+        elementsA[i].style.backgroundColor=x;
+  }
+}  
+
+function mygradeB() {
+  var y = document.getElementById("B").value;
+   elementsB = document.getElementsByClassName("gradeB");
+    for (var j = 0; j < elementsB.length; j++) {
+        elementsB[j].style.backgroundColor=y;
+  }
+} 
+
+function mygradeC() {
+  var z = document.getElementById("C").value;
+   elementsC = document.getElementsByClassName("gradeC");
+    for (var k = 0; k < elementsC.length; k++) {
+        elementsC[k].style.backgroundColor=z;
+  }
+} 
+
+function mygradeD() {
+  var m = document.getElementById("D").value;
+   elementsD = document.getElementsByClassName("gradeD");
+    for (var s = 0; s < elementsD.length; s++) {
+        elementsD[s].style.backgroundColor=m;
+  }
+} 
+
+function mygradeE() {
+  var n = document.getElementById("E").value;
+   elementsE = document.getElementsByClassName("gradeE");
+    for (var t = 0; t < elementsE.length; t++) {
+        elementsE[t].style.backgroundColor=n;
+  }
+} 
+
+function mygradeF() {
+  var o = document.getElementById("F").value;
+   elementsF = document.getElementsByClassName("gradeF");
+    for (var u = 0; u < elementsF.length; u++) {
+        elementsF[u].style.backgroundColor=o;
+  }
+} 
+
+function mygradeW() {
+  var r = document.getElementById("W").value;
+   elementsW = document.getElementsByClassName("gradeW");
+    for (var v = 0; v < elementsW.length; v++) {
+        elementsW[v].style.backgroundColor=r;
+  }
+} 
+
+</script>
+
+
+
+<!-- Javascript code for changing background when the apply button next to a color picker for course category is clicked --> 
+
+
+<script>
+function catDC() {
+  var x = document.getElementById("DC").value;
+   elementsA = document.getElementsByClassName("cDC");
+    for (var i = 0; i < elementsA.length; i++) {
+        elementsA[i].style.backgroundColor=x;
+  }
+}  
+
+function catDE() {
+  var y = document.getElementById("DE").value;
+   elementsB = document.getElementsByClassName("cDE");
+    for (var j = 0; j < elementsB.length; j++) {
+        elementsB[j].style.backgroundColor=y;
+  }
+} 
+
+function catBS() {
+  var z = document.getElementById("BS").value;
+   elementsC = document.getElementsByClassName("cBS");
+    for (var k = 0; k < elementsC.length; k++) {
+        elementsC[k].style.backgroundColor=z;
+  }
+} 
+
+function catEAS() {
+  var m = document.getElementById("EAS").value;
+   elementsD = document.getElementsByClassName("cEAS");
+    for (var s = 0; s < elementsD.length; s++) {
+        elementsD[s].style.backgroundColor=m;
+  }
+} 
+
+function catOC() {
+  var n = document.getElementById("OC").value;
+   elementsE = document.getElementsByClassName("cOC");
+    for (var t = 0; t < elementsE.length; t++) {
+        elementsE[t].style.backgroundColor=n;
+  }
+} 
+
+function catHU() {
+  var o = document.getElementById("HU").value;
+   elementsF = document.getElementsByClassName("cHU");
+    for (var u = 0; u < elementsF.length; u++) {
+        elementsF[u].style.backgroundColor=o;
+  }
+} 
+
+function catNG() {
+  var o = document.getElementById("NG").value;
+   elementsX = document.getElementsByClassName("cNG");
+    for (var u = 0; u < elementXF.length; u++) {
+        elementsX[u].style.backgroundColor=o;
+  }
+} 
+
+
+function catPBS() {
+  var r = document.getElementById("PBS").value;
+   elementsW = document.getElementsByClassName("cPBS");
+    for (var v = 0; v < elementsW.length; v++) {
+        elementsW[v].style.backgroundColor=r;
+  }
+} 
+
+
+
+</script>
+
+
+
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "450px";
+  document.getElementById("main").style.marginLeft = "150px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+<script>
+function openGrade() {
+  document.getElementById("gradeSidebar").style.width = "450px";
+  document.getElementById("final_ul").style.marginLeft = "10px";
+}
+
+function closeGrade() {
+  document.getElementById("gradeSidebar").style.width = "0";
+  document.getElementById("final_ul").style.marginLeft= "0";
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Academic Portal</title>
+<style>
+
+/* SIDENAV STYLING */     
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 210px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+/* SIDENAV STYLING */   
+
+body {
+  background-color: white;
+  text-align: center;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+table  {  
+  margin: 0 auto; 
+  background-color: white;
+} 
+
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+}
+
+td { white-space:pre }
+
+th:hover, td:hover {
+  background-color: orange;
+}
+
+</style>
+</head>
+<body>
+
+<!--  SIDENAV CODE -->    
+
+<div class="sidenav">
+  <a href="#Home">Home</a>
+  <a href="#Meeting Logs">Meeting Logs</a>
+  <a href="#Submit Course Plan">Submit Course Plan</a>
+  <a href="#Relaxation Requests">Relaxation Requests</a>
+  <button class="dropdown-btn">Student Profiles 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="#CSdual">CS Dual Degree</a>
+    <a href="#Degree Extension">Degree Extension</a>
+    <a href="#Degree Termination">Degree Termination</a>
+  </div>
+  <a href="#Search">Search</a>
+</div>
+<script>
+
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+<!--  SIDENAV CODE -->  
+
+<h1>Interactive Academic Feedback System</h1>
+<p><b>Courses done by Btech student 'Aarti' in Computer Science</b></p>
+
+<!-- <p>Shivani Sen</p>
+<p>2011CS50297</p>  -->
+
+
+ <table id = "display-table" style="width:60%">
+  <tr>
+
+    <th>Sem</th>
+    <th>Course Code</th>
+    <th>Title</th>
+    <th>Credits</th>
+    <th>Grade</th>
+
+  </tr>
+
+{% for getdata in cscourses %}
+<tr>
+
+       <td>
+     {{getdata.semester}}
+      </td> 
+       <td>
+     {{getdata.course_code}}            
+      </td>
+       <td>
+     {{getdata.course_title}}
+      </td>
+       <td>
+     {{getdata.course_credits}}
+      </td>
+       <td>
+     {{getdata.course_grade}}
+      </td>
+
+</tr>
+{% endfor %}
+
+</table> 
+
+
+
+<!-- Javascript code for showing a popup when a value is clicked in the table -->  
+
+<script>
+highlight_row();
+function highlight_row() {
+    var table = document.getElementById('display-table');
+    var cells = table.getElementsByTagName('td');
+
+    for (var i = 0; i < cells.length; i++) {
+        // Take each cell
+        var cell = cells[i];
+        // do something on onclick event for cell
+        cell.onclick = function () {
+            // Get the row id where the cell exists
+            var rowId = this.parentNode.rowIndex;
+
+            var rowsNotSelected = table.getElementsByTagName('tr');
+            for (var row = 0; row < rowsNotSelected.length; row++) {
+                rowsNotSelected[row].style.backgroundColor = "";
+                rowsNotSelected[row].classList.remove('selected');
+            }
+            var rowSelected = table.getElementsByTagName('tr')[rowId];
+            rowSelected.style.backgroundColor = "";
+            rowSelected.className += " selected";
+
+            msg = rowSelected.cells[1].innerHTML;
+            msg += rowSelected.cells[2].innerHTML;
+            msg += rowSelected.cells[4].innerHTML;
+            alert(msg);
+        }
+    }   
+}
+
+
+</script>
+
+
+<!--
+
+<script>
+highlight_row();
+function highlight_row(){
+  var table = document.getElementById('display-table');
+  var cells = table.getElementsByTagName('td');
+
+  for(var i = 0; i < cells.length; i++) {
+
+    var cell = cells[i];
+
+    cell.onclick = function () {
+      var rowId = this.parentNode.rowIndex;
+
+      var rowsNotSelected = table.getElementsByTagName('tr');
+
+    }
+  }
+
+}
+</script>  
+
+
+-->
+
+
+
+
+
+</body>
+</html>
